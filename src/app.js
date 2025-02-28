@@ -13,9 +13,9 @@ import mocksRouter from './routes/mocks.router.js';
 dotenv.config()
 const app = express();
 
-const PORT = 8080
+const PORT = process.env.PORT || 8080;
 
-const connection = mongoose.connect("mongodb+srv://btofpach:3202coder@coder.wy2fs.mongodb.net/?retryWrites=true&w=majority&appName=coder")
+const connection = mongoose.connect(process.env.MONGO_URI)
 .then(() => console.log("Conectado a base de datos MongoDb Atlas"))
 .catch((error) => console.error("Error en conexcion :", error));
 
@@ -31,6 +31,6 @@ app.use('/api/mocks',mocksRouter);
 
 
 app.listen(PORT,()=>{
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Servidor escuchando en el puerto ${PORT}`)
 }
 )
